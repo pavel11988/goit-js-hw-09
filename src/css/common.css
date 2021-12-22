@@ -16,3 +16,20 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.div-buttons{
+  margin-top: 200px;
+  text-align: center;
+  user-select: none;
+}
+
+.btn.task-1{
+  width: 200px;
+  height: 100px;
+  margin: 20px;
+}
+
+.btn-disabled{
+  opacity: 0.3;
+}
+
