@@ -33,3 +33,37 @@ img {
   opacity: 0.3;
 }
 
+input[id="datetime-picker"]{
+  height: 35px;
+}
+
+button[data-start]{
+  width: 60px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: green;
+  color: white;
+  border-color: seagreen;
+}
+
+.timer {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.value {
+  text-align: center;
+  font-size: 25px;
+}
+
+.label {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+}

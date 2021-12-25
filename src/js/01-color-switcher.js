@@ -18,6 +18,7 @@ const changeColor = {
         this.isActive = true;
         button_start.classList.add("disabled");
         button_stop.classList.remove("disabled");
+        document.body.style.backgroundColor = getRandomHexColor();
 
         timerId = setInterval(() => {
             document.body.style.backgroundColor = getRandomHexColor();
