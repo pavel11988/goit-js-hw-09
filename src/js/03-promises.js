@@ -1,38 +1,39 @@
 import Notiflix from 'notiflix';
 
-
 const form = document.querySelector('.form');
-let position = 0;
-let timerId = null;
+let array = [];
+
 
 form.addEventListener('submit', onButtonCreate);
 
 function onButtonCreate(event) {
   event.preventDefault();
   let delay = +event.currentTarget.elements.delay.value;
-  const step = +event.currentTarget.elements.step.value;
+  let step = +event.currentTarget.elements.step.value;
   const amount = +event.currentTarget.elements.amount.value;
+
+  form.reset();
 
   if (delay < 0 || step < 0 || amount < 0) {
     Notiflix.Notify.warning('Error! Values must be >= 0')
     return;
   }
 
-  timerId = setInterval(() => {
+  for (let i = 0; i < amount; i += 1) {
+    array.push(delay + i * step);
+  }
 
-    position += 1;  
-    if (position == amount+1) {clearInterval(timerId); return}
-
-    setTimeout(() => delay += step) 
-
-    createPromise(position, delay)
-      .then(({position, delay}) => Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay}ms`))
-      .catch(({position, delay}) => Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`))
-  },delay)
+  const promises = array.map((value, index) => {
+    createPromise(index + 1, value)
+      .then(({i, delay}) => Notiflix.Notify.success(`Fulfilled promise ${index + 1} in ${value}ms`))
+      .catch(({i, delay}) => Notiflix.Notify.failure(`Rejected promise ${index + 1} in ${value}ms`))
+  })
+  
 } 
 
 
 function createPromise(position, delay) {
+
   const promise = new Promise((reslove , reject) => {
    
     setInterval(() => {
@@ -42,8 +43,8 @@ function createPromise(position, delay) {
       else reject({position, delay});
 
       },delay);
+
   })
 
   return promise;
 }  
-
