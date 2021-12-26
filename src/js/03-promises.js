@@ -1,7 +1,6 @@
 import Notiflix from 'notiflix';
 
 const form = document.querySelector('.form');
-let array = [];
 
 
 form.addEventListener('submit', onButtonCreate);
@@ -11,8 +10,8 @@ function onButtonCreate(event) {
   let delay = +event.currentTarget.elements.delay.value;
   let step = +event.currentTarget.elements.step.value;
   const amount = +event.currentTarget.elements.amount.value;
+  let array = [];
 
-  form.reset();
 
   if (delay < 0 || step < 0 || amount < 0) {
     Notiflix.Notify.warning('Error! Values must be >= 0')
