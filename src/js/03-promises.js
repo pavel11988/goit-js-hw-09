@@ -13,6 +13,10 @@ function onButtonCreate(event) {
   const step = +event.currentTarget.elements.step.value;
   const amount = +event.currentTarget.elements.amount.value;
 
+  if (delay < 0 || step < 0 || amount < 0) {
+    Notiflix.Notify.warning('Error! Values must be >= 0')
+    return;
+  }
 
   timerId = setInterval(() => {
 
@@ -24,7 +28,7 @@ function onButtonCreate(event) {
     createPromise(position, delay)
       .then(({position, delay}) => Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay}ms`))
       .catch(({position, delay}) => Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`))
-  },step)
+  },delay)
 } 
 
 
