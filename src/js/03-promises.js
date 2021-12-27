@@ -11,6 +11,11 @@ function onButtonCreate(event) {
   let step = +event.currentTarget.elements.step.value;
   const amount = +event.currentTarget.elements.amount.value;
 
+   if (delay < 0 || step < 0 || amount < 0) {
+    Notiflix.Notify.warning('Error! Values must be >= 0')
+    return;
+  }
+
   for (let position = 1; position <= amount; position += 1) {
     createPromise(position, delay)
       .then(({ position, delay }) => {
@@ -25,10 +30,7 @@ function onButtonCreate(event) {
 
   //Через цикл и массив:
   // let array = [];
-  // if (delay < 0 || step < 0 || amount < 0) {
-  //   Notiflix.Notify.warning('Error! Values must be >= 0')
-  //   return;
-  // }
+
 
   // for (let i = 0; i < amount; i += 1) {
   //   array.push(delay + i * step);
