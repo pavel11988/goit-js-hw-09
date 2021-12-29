@@ -40,7 +40,7 @@ button.addEventListener('click', startTimer);
 
 function startTimer() {
 
-    setInterval(() => {
+    let timerId = setInterval(() => {
         ms = ms - 1000;
         const convert = convertMs(ms); 
 
@@ -49,7 +49,12 @@ function startTimer() {
         minutesTitle.textContent = `${pad(convert.minutes)}`;
         secondsTitle.textContent = `${pad(convert.seconds)}`;
 
+        if (secondsTitle.textContent === '00' && hoursTitle.textContent === '00'
+        && minutesTitle.textContent === '00' && secondsTitle.textContent === '00') {
+            clearTimeout(timerId);
+        };
     }, 1000);
+
 }
 
 function pad(value) {
