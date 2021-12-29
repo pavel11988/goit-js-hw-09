@@ -49,10 +49,8 @@ function startTimer() {
         minutesTitle.textContent = `${pad(convert.minutes)}`;
         secondsTitle.textContent = `${pad(convert.seconds)}`;
 
-        if (secondsTitle.textContent === '00' && hoursTitle.textContent === '00'
-        && minutesTitle.textContent === '00' && secondsTitle.textContent === '00') {
-            clearTimeout(timerId);
-        };
+        stopTimer(daysTitle,hoursTitle,minutesTitle,secondsTitle,timerId);
+       
     }, 1000);
 
 }
@@ -74,6 +72,13 @@ function convertMs(ms) {
 
     return { days, hours, minutes, seconds };
 };
+
+function stopTimer(daysTitle,hoursTitle,minutesTitle,secondsTitle,timerId){
+    if (daysTitle.textContent === '00' && hoursTitle.textContent === '00'
+    && minutesTitle.textContent === '00' && secondsTitle.textContent === '00') {
+        clearTimeout(timerId);
+    };
+}
 
 
 
